@@ -1,0 +1,131 @@
+# Query to get all departments with their employees and tasks
+query GetAllDepartments {
+  departments {
+    id
+    name
+    location
+    employees {
+      id
+      name
+      email
+      position
+      tasks {
+        id
+        title
+        description
+        status
+        dueDate
+      }
+    }
+  }
+}
+
+# Query to get a specific department with its employees and tasks
+query GetDepartment($id: ID!) {
+  department(id: $id) {
+    id
+    name
+    location
+    employees {
+      id
+      name
+      email
+      position
+      tasks {
+        id
+        title
+        description
+        status
+        dueDate
+      }
+    }
+  }
+}
+
+# Query to get all employees with their departments and tasks
+query GetAllEmployees {
+  employees {
+    id
+    name
+    email
+    position
+    department {
+      id
+      name
+      location
+    }
+    tasks {
+      id
+      title
+      description
+      status
+      dueDate
+    }
+  }
+}
+
+# Query to get a specific employee with their department and tasks
+query GetEmployee($id: ID!) {
+  employee(id: $id) {
+    id
+    name
+    email
+    position
+    department {
+      id
+      name
+      location
+    }
+    tasks {
+      id
+      title
+      description
+      status
+      dueDate
+    }
+  }
+}
+
+# Query to get all tasks with their assigned employees
+query GetAllTasks {
+  tasks {
+    id
+    title
+    description
+    status
+    dueDate
+    employee {
+      id
+      name
+      email
+      position
+      department {
+        id
+        name
+        location
+      }
+    }
+  }
+}
+
+# Query to get a specific task with its assigned employee
+query GetTask($id: ID!) {
+  task(id: $id) {
+    id
+    title
+    description
+    status
+    dueDate
+    employee {
+      id
+      name
+      email
+      position
+      department {
+        id
+        name
+        location
+      }
+    }
+  }
+}
