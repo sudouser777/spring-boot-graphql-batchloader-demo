@@ -1,0 +1,50 @@
+type Query {
+    # Department queries
+    departments(name: String, location: String, page: Int, size: Int): [Department]
+    department(id: ID!): Department
+
+    # Employee queries
+    employees(name: String, position: String, departmentId: ID, page: Int, size: Int): [Employee]
+    employee(id: ID!): Employee
+
+    # Task queries
+    tasks(title: String, status: String, employeeId: ID, categoryId: ID, page: Int, size: Int): [Task]
+    task(id: ID!): Task
+
+    # Category queries
+    categories(name: String, page: Int, size: Int): [Category]
+    category(id: ID!): Category
+}
+
+type Department {
+    id: ID!
+    name: String!
+    location: String
+    employees: [Employee]
+}
+
+type Employee {
+    id: ID!
+    name: String!
+    email: String!
+    position: String
+    department: Department
+    tasks: [Task]
+}
+
+type Task {
+    id: ID!
+    title: String!
+    description: String
+    status: String!
+    dueDate: String
+    employee: Employee
+    category: Category
+}
+
+type Category {
+    id: ID!
+    name: String!
+    description: String
+    tasks: [Task]
+}
